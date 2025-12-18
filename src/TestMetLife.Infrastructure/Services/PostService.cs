@@ -13,13 +13,31 @@ public class PostService : IPostService
         _jsonPlaceholderClient = jsonPlaceholderClient;
     }
 
-    public Task<IEnumerable<PostDto>> GetAllAsync()
+    public async Task<IEnumerable<PostDto>> GetAllAsync()
     {
-        throw new NotImplementedException();
+        var posts = await _jsonPlaceholderClient.GetPostsAsync();
+        
+        return posts.Select(p => new PostDto
+        {
+            Id = p.Id,
+            UserId = p.UserId,
+            Title = p.Title,
+            Body = p.Body
+        });
     }
 
-    public Task<PostDto?> GetByIdAsync(int id)
+    public async Task<PostDto?> GetByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        var post = await _jsonPlaceholderClient.GetPostByIdAsync(id);
+        if(post == null) 
+            return null;
+        
+        return new PostDto
+        {
+            Id = post.Id,
+            UserId = post.UserId,
+            Title = post.Title,
+            Body = post.Body
+        };
     }
 }

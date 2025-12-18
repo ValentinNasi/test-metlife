@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TestMetLife.Application.Interfaces;
 
 namespace TestMetLife.Api.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("api/[controller]")]
 public class PostsController : ControllerBase
 {
