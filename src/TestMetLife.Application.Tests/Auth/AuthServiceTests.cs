@@ -1,6 +1,5 @@
 using FluentAssertions;
 using Microsoft.Extensions.Configuration;
-using Moq;
 using TestMetLife.Application.Services;
 
 namespace TestMetLife.Application.Tests.Auth;

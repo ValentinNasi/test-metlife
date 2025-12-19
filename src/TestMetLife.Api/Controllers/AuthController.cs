@@ -8,12 +8,10 @@ namespace TestMetLife.Api.Controllers;
 [Route("api/auth")]
 public class AuthController : ControllerBase
 {
-    private readonly IConfiguration _configuration;
     private readonly IAuthService _authService;
 
-    public AuthController(IConfiguration configuration, IAuthService authService)
+    public AuthController(IAuthService authService)
     {
-        _configuration = configuration;
         _authService = authService;
     }
 
