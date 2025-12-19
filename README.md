@@ -26,7 +26,8 @@ Este proyecto consiste en el desarrollo de una API REST en .NET que consume dato
 1. Clonar el repositorio.
 
 git clone https://github.com/ValentinNasi/test-metlife.git
-cd test-metlife
+
+cd test-metlife/src
 
 2. Restaurar dependencias.
 
@@ -38,7 +39,7 @@ dotnet build
 
 4. Ejecutar la API.
 
-dotnet run --project src/TestMetLife.Api
+dotnet run --project TestMetLife.Api
 
 ## Instrucciones para ejecutar con Docker
 
