@@ -1,0 +1,28 @@
+# ===== Build stage =====
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+WORKDIR /src
+
+# Copiar solution y proyectos
+COPY *.sln .
+COPY TestMetLife.Api/*.csproj TestMetLife.Api/
+COPY TestMetLife.Application/*.csproj TestMetLife.Application/
+COPY TestMetLife.Infrastructure/*.csproj TestMetLife.Infrastructure/
+COPY TestMetLife.Domain/*.csproj TestMetLife.Domain/
+
+# Restore
+RUN dotnet restore TestMetLife.Api/TestMetLife.Api.csproj
+
+# Copiar todo el código
+COPY . .
+
+# Build
+RUN dotnet publish TestMetLife.Api/TestMetLife.Api.csproj -c Release -o /app/publish
+
+# ===== Runtime stage =====
+FROM mcr.microsoft.com/dotnet/aspnet:7.0
+WORKDIR /app
+
+COPY --from=build /app/publish .
+
+EXPOSE 5027
+ENTRYPOINT ["dotnet", "TestMetLife.Api.dll"]

@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  aspnet-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: aspnet7_app
+    ports:
+      - "5027:5027"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_URLS: http://+:5027
+    restart: unless-stopped
